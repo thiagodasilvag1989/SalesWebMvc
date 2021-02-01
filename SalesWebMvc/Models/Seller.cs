@@ -25,6 +25,7 @@ namespace SalesWebMvc.Models
 
         [Required(ErrorMessage = "{0} Campo Obrigatório")]
         [Range(100.0,50000.0, ErrorMessage ="{0} entre {1} e {2}")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Somente valores numéricos")]
         [Display(Name = "Salário Base")]
         [DisplayFormat(DataFormatString ="{0:F2}")]
         public double BaseSalary { get; set; }
