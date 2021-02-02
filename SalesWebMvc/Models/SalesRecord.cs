@@ -1,14 +1,25 @@
 ﻿using SalesWebMvc.Models.Enums;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesWebMvc.Models
 {
     public class SalesRecord
     {
         public int Id { get; set; }
+
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
+        [Display(Name = "Data")]
         public DateTime Date { get; set; }
+
+        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [Display(Name ="Vendas")]
         public double Amount { get; set; }
+
+        [Display(Name ="Estado")]
         public SaleStatus Status { get; set; }
+
+        [Display(Name = "Vendedor")]
         public Seller Seller { get; set; }
 
         public SalesRecord()
