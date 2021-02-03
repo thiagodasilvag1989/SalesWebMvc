@@ -42,11 +42,11 @@ namespace SalesWebMvc.Controllers
         {
             if (!minDate.HasValue)
             {
-                minDate = new DateTime(DateTime.Now.Year);
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
             }
             if (!maxDate.HasValue)
             {
-                maxDate = new DateTime(DateTime.Now.Year);
+                maxDate = new DateTime(DateTime.Now.Year, 12, 30);
             }
 
             ViewData["minDate"] = minDate.Value.ToString("dd-MM-yyyy");

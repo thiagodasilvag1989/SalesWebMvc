@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - SalesWebMvc</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lumen.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cerelean.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -17,8 +17,8 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-inverse">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -32,9 +32,9 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Departments" asp-action="Index">Departamentos</a></li>
-                    <li><a asp-area="" asp-controller="Sellers" asp-action="Index">Sellers</a></li>
+                    <li><a asp-area="" asp-controller="Sellers" asp-action="Index">Vendedores</a></li>
                     <li><a asp-area="" asp-controller="SalesRecords" asp-action="Index">Vendas</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Sobret</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contato</a></li>
                 </ul>
             </div>

@@ -12,7 +12,7 @@ namespace SalesWebMvc.Models
         [Display(Name = "Data")]
         public DateTime Date { get; set; }
 
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [DisplayFormat(DataFormatString ="{0:N}")]
         [Display(Name ="Vendas")]
         public double Amount { get; set; }
 

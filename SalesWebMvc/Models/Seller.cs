@@ -27,11 +27,13 @@ namespace SalesWebMvc.Models
         [Range(100.0,50000.0, ErrorMessage ="{0} entre {1} e {2}")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Somente valores numéricos")]
         [Display(Name = "Salário Base")]
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [DisplayFormat(DataFormatString = "{0:N}")]
         public double BaseSalary { get; set; }
 
         [Display(Name = "Departamento")]
         public Department Department { get; set; }
+
+        [Display(Name ="Departamentos")]
         public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
