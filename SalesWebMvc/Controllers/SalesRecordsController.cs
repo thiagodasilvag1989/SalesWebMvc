@@ -25,7 +25,7 @@ namespace SalesWebMvc.Controllers
         {
             if (!minDate.HasValue)
             {
-                minDate = new DateTime(DateTime.Now.Year,1,1);
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
             }
             if (!maxDate.HasValue)
             {
@@ -37,7 +37,7 @@ namespace SalesWebMvc.Controllers
             var result = await _salesRecordService.FindByDateAsync(minDate, maxDate);
             return View(result);
         }
-        
+
         public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
             if (!minDate.HasValue)
@@ -54,5 +54,34 @@ namespace SalesWebMvc.Controllers
             var result = await _salesRecordService.FindByDateGroupingAsync(minDate, maxDate);
             return View(result);
         }
+
+        public IActionResult DashboardSimple(DateTime? minDate, DateTime? maxDate)
+        {
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = new DateTime(DateTime.Now.Year, 12, 30);
+            }
+
+            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
+            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
+
+            var salesRecordView = _salesRecordService.FindByDateChart(minDate, maxDate);
+            var sellerNameView = _salesRecordService.FindByName();
+
+
+            ViewBag.MinDate = minDate.Value.ToString("dd/MM/yyyy");
+            ViewBag.MaxDate = maxDate.Value.ToString("dd/MM/yyyy");
+
+
+            ViewBag.Sellers = sellerNameView;
+            ViewBag.Amount = salesRecordView;
+
+            return View();
+        }
     }
 }
+
