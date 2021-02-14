@@ -69,7 +69,7 @@ namespace SalesWebMvc.Controllers
             ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
             ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
 
-            var salesRecordView = _salesRecordService.FindByDateChart(minDate, maxDate);
+            var sellerRecordView = _salesRecordService.FindByDateChart(minDate, maxDate);
             var sellerNameView = _salesRecordService.FindByName();
 
 
@@ -78,7 +78,35 @@ namespace SalesWebMvc.Controllers
 
 
             ViewBag.Sellers = sellerNameView;
-            ViewBag.Amount = salesRecordView;
+            ViewBag.Amount = sellerRecordView;
+
+            return View();
+        }
+
+        public IActionResult DashboardDepartment(DateTime? minDate, DateTime? maxDate)
+        {
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = new DateTime(DateTime.Now.Year, 12, 30);
+            }
+
+            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
+            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
+
+            var departmentRecordView = _salesRecordService.FindByDateGroupingChart(minDate, maxDate);
+            var departmentNameView = _salesRecordService.FindByDepartment();
+
+
+            ViewBag.MinDate = minDate.Value.ToString("dd/MM/yyyy");
+            ViewBag.MaxDate = maxDate.Value.ToString("dd/MM/yyyy");
+
+
+            ViewBag.Departments = departmentNameView;
+            ViewBag.Amount = departmentRecordView;
 
             return View();
         }

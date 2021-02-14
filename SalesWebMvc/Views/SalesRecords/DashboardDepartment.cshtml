@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<SalesWebMvc.Models.SalesRecord>
 
 @{
-    var sallers = ViewBag.Sellers;
+    var departments = ViewBag.Departments;
     var recordSales = ViewBag.Amount;
 
     var minDate = ViewBag.MinDate;
     var maxDate = ViewBag.MaxDate;
 
-    var sallersSerialize = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(sallers));
+    var departmentsSerialize = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(departments));
     var recordSalesSerialize = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(recordSales));
 
     var minDateSeri = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(minDate));
     var maxDateSeri = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(maxDate));
 
-    ViewData["Title"] = "Vendedores com mais vendas";
+    ViewData["Title"] = "Vendas por Departamento";
 }
 
 <h2 style="text-align:center; text-transform:uppercase">@ViewData["Title"]</h2>
@@ -49,7 +49,7 @@
 
     <script>
 
-        var sallers = @sallersSerialize;
+        var departments = @departmentsSerialize;
         var recordSales = @recordSalesSerialize;
 
         let minDate = @minDateSeri;
@@ -59,47 +59,33 @@
             .ready(function () {
                 var ctx = $('#grafico');
                     new Chart(ctx, {
-                    type: 'bar',
+                        type: 'polarArea',
                     data: {
-                        labels: sallers,
+                        labels: departments,
                         datasets: [{
                             data: recordSales,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.8)',
-                                'rgba(54, 162, 235, 0.8)',
-                                'rgba(255, 206, 86,0.8)',
-                                'rgba(75, 192, 192, 0.8)',
-                                'rgba(153, 102, 255, 0.8)',
-                                'rgba(255, 159, 64, 0.8)'
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86,0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)',
+                                'rgba(255, 159, 64, 0.6)'
                             ],
+                            labels: departments,
                             borderColor: [
-                                'rgba(255, 99, 132, 5)',
-                                'rgba(54, 162, 235, 5)',
-                                'rgba(255, 206, 86, 5)',
-                                'rgba(75, 192, 192, 5)',
-                                'rgba(153, 102, 255, 5)',
-                                'rgba(255, 159, 64, 5)'
+                                '#fff'
                             ],
-                            borderWidth: 1
+                            borderWidth: 4
                         }]
                     },
                         options: {
-                            legend: {
-                                display: false,
-                            },
                             reponsive: true,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    callback: function (value, index, values) {
-                                        return 'R$ ' + value
-                                    },
-                                    beginAtZero: true
-                                }
-                            }]
+                            legend: {
+                                position: 'top'
+                            },                            
                         }
-                    }
-                });
+                    });
             });
     </script>
 }

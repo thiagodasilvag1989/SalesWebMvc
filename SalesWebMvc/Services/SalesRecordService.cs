@@ -62,8 +62,6 @@ namespace SalesWebMvc.Services
             var sellerCount = _context.Seller.Select(x => x.Id).Count();
             var salesRecord = new List<double>();
 
-            var sellerName = _context.Seller.Select(x => x.Name).ToList();
-
             int i = 1;
             do
             {
@@ -76,9 +74,43 @@ namespace SalesWebMvc.Services
             return salesRecord;
 
         }
+
+        public List<double> FindByDateGroupingChart(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.SalesRecord select obj;
+            var departments = from obj in _context.Department select obj;
+
+            if (minDate.HasValue)
+            {
+                result = result.Where(x => x.Date >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.Date <= maxDate.Value);
+            }
+
+            int cont = departments.Select(x => x.Id).Count();
+            List<double> listDep = new List<double>();
+            
+            int i = 1;
+
+            do
+            {
+                listDep.Add(result.Where(x => x.Date >= minDate && x.Date <= maxDate && x.Seller.DepartmentId == i && x.Status.HasFlag(Models.Enums.SaleStatus.Faturado)).Sum(x => x.Amount));
+                i++;
+            } while (i <= cont);
+
+            return listDep.ToList();
+        }
+
         public List<string> FindByName()
         {
             return _context.Seller.Select(s => s.Name).ToList();
+        }
+
+        public List<string> FindByDepartment()
+        {
+            return _context.Department.Select(s => s.Name).ToList();
         }
     }
 }
