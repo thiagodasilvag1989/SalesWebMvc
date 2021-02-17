@@ -24,7 +24,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="btn btn-group-xs">
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhes</a>
                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>

@@ -32,8 +32,8 @@ namespace SalesWebMvc.Controllers
                 maxDate = new DateTime(DateTime.Now.Year, 12, 30);
             }
 
-            ViewData["minDate"] = minDate.Value.ToString("dd-MM-yyyy");
-            ViewData["maxDate"] = maxDate.Value.ToString("dd-MM-yyyy");
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
             var result = await _salesRecordService.FindByDateAsync(minDate, maxDate);
             return View(result);
         }
@@ -49,8 +49,8 @@ namespace SalesWebMvc.Controllers
                 maxDate = new DateTime(DateTime.Now.Year, 12, 30);
             }
 
-            ViewData["minDate"] = minDate.Value.ToString("dd-MM-yyyy");
-            ViewData["maxDate"] = maxDate.Value.ToString("dd-MM-yyyy");
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
             var result = await _salesRecordService.FindByDateGroupingAsync(minDate, maxDate);
             return View(result);
         }
@@ -66,8 +66,8 @@ namespace SalesWebMvc.Controllers
                 maxDate = new DateTime(DateTime.Now.Year, 12, 30);
             }
 
-            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
-            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
 
             var sellerRecordView = _salesRecordService.FindByDateChart(minDate, maxDate);
             var sellerNameView = _salesRecordService.FindByName();
@@ -94,8 +94,8 @@ namespace SalesWebMvc.Controllers
                 maxDate = new DateTime(DateTime.Now.Year, 12, 30);
             }
 
-            ViewData["minDate"] = minDate.Value.ToString("dd/MM/yyyy");
-            ViewData["maxDate"] = maxDate.Value.ToString("dd/MM/yyyy");
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
 
             var departmentRecordView = _salesRecordService.FindByDateGroupingChart(minDate, maxDate);
             var departmentNameView = _salesRecordService.FindByDepartment();
